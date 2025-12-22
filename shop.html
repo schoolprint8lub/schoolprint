@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Магазин - School Print</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">School Print</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="shop.html">Магазин</a></li>
+                    <li><a href="team.html">Команда</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                    <li><a href="#" id="cart-btn" class="cart-link">🛒 Кошик (<span id="cart-count">0</span>)</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Каталог Продукції</h1>
+        <div id="product-list" class="grid">
+            <p>Завантаження товарів...</p>
+        </div>
+    </main>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-cart">&times;</span>
+            <h2>Ваш кошик</h2>
+            <div id="cart-items"></div>
+            <div class="cart-summary">
+                <strong>Разом: <span id="cart-total-price">0</span> грн</strong>
+            </div>
+            
+            <form name="order" method="POST" data-netlify="true" id="checkout-form" class="checkout-form">
+                <hr>
+                <h3>Оформити замовлення</h3>
+                <input type="hidden" name="form-name" value="order">
+                <textarea name="order_details" id="order-details-input" style="display:none;"></textarea>
+                
+                <label>Ваше ім'я</label>
+                <input type="text" name="name" required placeholder="Ім'я та Прізвище">
+                
+                <label>Телефон</label>
+                <input type="tel" name="phone" required placeholder="+380...">
+                
+                <button type="submit" class="btn full-width">Надіслати замовлення</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container"><p>&copy; 2025 СШП «School Print»</p></div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', loadProducts);</script>
+</body>
+</html>

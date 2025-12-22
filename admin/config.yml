@@ -1,0 +1,26 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "assets/uploads"
+
+collections:
+  - name: "products"
+    label: "Товари"
+    folder: "content"
+    create: true
+    slug: "{{slug}}"
+    files:
+      - file: "content/products.json"
+        label: "Список товарів"
+        name: "products"
+        fields:
+          - label: "Товари"
+            name: "items"
+            widget: "list"
+            fields:
+              - {label: "Назва", name: "title", widget: "string"}
+              - {label: "Фото", name: "image", widget: "image"}
+              - {label: "Опис", name: "description", widget: "text"}
+              - {label: "Ціна (грн)", name: "price", widget: "number"}

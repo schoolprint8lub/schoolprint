@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Контакти - School Print</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">School Print</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="shop.html">Магазин</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Зв'яжіться з нами</h1>
+        <div class="grid" style="grid-template-columns: 1fr 1fr;">
+            <div>
+                <h3>Адреса</h3>
+                <p>Полтавська обл., м. Лубни,<br>просп. Володимирський, 104/1</p>
+                <h3>Email</h3>
+                <p>ssplubny8@gmail.com</p>
+            </div>
+            
+            <form name="contact" method="POST" data-netlify="true">
+                <h3>Напишіть нам</h3>
+                <input type="hidden" name="form-name" value="contact">
+                <input type="text" name="name" placeholder="Ім'я" required style="width:100%; margin-bottom:10px; padding:10px;">
+                <input type="email" name="email" placeholder="Email" required style="width:100%; margin-bottom:10px; padding:10px;">
+                <textarea name="message" rows="5" placeholder="Повідомлення" required style="width:100%; margin-bottom:10px; padding:10px;"></textarea>
+                <button type="submit" class="btn">Надіслати</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container"><p>&copy; 2025 СШП «School Print»</p></div>
+    </footer>
+</body>
+</html>
