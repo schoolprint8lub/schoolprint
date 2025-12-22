@@ -2,6 +2,7 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контакти - School Print</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,11 +21,8 @@
 
                 <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html">Головна</a></li>
-                    <li><a href="about.html">Про нас</a></li>
                     <li><a href="shop.html">Магазин</a></li>
-                    <li><a href="team.html">Команда</a></li>
                     <li><a href="contacts.html">Контакти</a></li>
-                    <li><a href="#" id="cart-btn" class="cart-link">🛒 Кошик (<span id="cart-count">0</span>)</a></li>
                 </ul>
             </nav>
         </div>
@@ -32,7 +30,7 @@
 
     <main class="container">
         <h1>Зв'яжіться з нами</h1>
-        <div class="grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
             <div>
                 <h3>Адреса</h3>
                 <p>Полтавська обл., м. Лубни,<br>просп. Володимирський, 104/1</p>
@@ -40,12 +38,16 @@
                 <p>ssplubny8@gmail.com</p>
             </div>
             
-            <form name="contact" method="POST" data-netlify="true">
+            <form name="contact" method="POST" data-netlify="true" action="/success.html">
                 <h3>Напишіть нам</h3>
                 <input type="hidden" name="form-name" value="contact">
-                <input type="text" name="name" placeholder="Ім'я" required style="width:100%; margin-bottom:10px; padding:10px;">
-                <input type="email" name="email" placeholder="Email" required style="width:100%; margin-bottom:10px; padding:10px;">
-                <textarea name="message" rows="5" placeholder="Повідомлення" required style="width:100%; margin-bottom:10px; padding:10px;"></textarea>
+                
+                <input type="text" name="name" placeholder="Ім'я" required style="width:100%; margin-bottom:10px; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                
+                <input type="email" name="email" placeholder="Email" required style="width:100%; margin-bottom:10px; padding:10px; border:1px solid #ccc; border-radius:5px;">
+                
+                <textarea name="message" rows="5" placeholder="Повідомлення" required style="width:100%; margin-bottom:10px; padding:10px; border:1px solid #ccc; border-radius:5px; font-family:inherit;"></textarea>
+                
                 <button type="submit" class="btn">Надіслати</button>
             </form>
         </div>
@@ -54,5 +56,7 @@
     <footer>
         <div class="container"><p>&copy; 2025 СШП «School Print»</p></div>
     </footer>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>
