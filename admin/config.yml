@@ -6,17 +6,14 @@ media_folder: "assets/uploads"
 public_folder: "assets/uploads"
 
 collections:
-  - name: "products"
-    label: "Товари"
-    folder: "content"
-    create: true
-    slug: "{{slug}}"
+  - name: "shop"
+    label: "Магазин"
     files:
       - file: "content/products.json"
-        label: "Список товарів"
-        name: "products"
+        label: "Керування товарами"
+        name: "products_list"
         fields:
-          - label: "Товари"
+          - label: "Список товарів"
             name: "items"
             widget: "list"
             fields:
