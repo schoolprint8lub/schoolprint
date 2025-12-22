@@ -97,3 +97,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if(close) close.onclick = () => modal.style.display = 'none';
     window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; };
 });
+// === MOBILE MENU LOGIC ===
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger-btn');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', () => {
+            // Перемикаємо клас .active, який ми прописали в CSS
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Закривати меню, якщо клікнули на посилання
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+});
