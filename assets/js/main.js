@@ -1,120 +1,151 @@
-// Завантаження товарів
-async function loadProducts() {
-    const container = document.getElementById('product-list');
-    if (!container) return;
-
-    // ДЕМО ТОВАРИ З ПРЕЗЕНТАЦІЇ (Якщо адмінка порожня)
-    const demoProducts = [
-        { id: "p1", title: "Лист від Святого Миколая", category: "Поліграфія", price: 50, image: "https://via.placeholder.com/300?text=Letter", description: "Персональний іменний лист для дитини." },
-        { id: "p2", title: "Бантик з фоамірану", category: "Сувеніри", price: 40, image: "https://via.placeholder.com/300?text=Bow", description: "Ручна робота, оздоблення стразами." },
-        { id: "p3", title: "Оберіг «Домовичок»", category: "Обереги", price: 120, image: "https://via.placeholder.com/300?text=Charm", description: "Оберіг родинного затишку." },
-        { id: "p4", title: "Закатний значок", category: "Сувеніри", price: 25, image: "https://via.placeholder.com/300?text=Badge", description: "Виготовлено на новому обладнанні." },
-        { id: "p5", title: "Брендований щоденник", category: "Поліграфія", price: 150, image: "https://via.placeholder.com/300?text=Diary", description: "Фірмовий щоденник гімназії." }
-    ];
-
-    // Спробуємо завантажити з JSON файлу CMS
-    try {
-        const response = await fetch('content/products.json'); // Шлях без скісної риски на початку!
-        if (response.ok) {
-            const data = await response.json();
-            if (data.items && data.items.length > 0) {
-                renderList(data.items, container);
-                return;
-            }
-        }
-    } catch (e) { console.log('Використовуються демо-дані'); }
-
-    // Якщо файл порожній або помилка - показуємо демо
-    renderList(demoProducts, container);
-}
-
-function renderList(products, container) {
-    container.innerHTML = products.map(item => `
-        <div class="card">
-            <img src="${item.image}" alt="${item.title}">
-            <h3>${item.title}</h3>
-            <p style="font-size:0.9rem; flex-grow:1;">${item.description}</p>
-            <div class="price-row">
-                <span>${item.price} грн</span>
-                <button class="btn" onclick="addToCart('${item.title}', ${item.price})">В кошик</button>
-            </div>
-        </div>
-    `).join('');
-}
-
-// КОШИК
-let cart = JSON.parse(localStorage.getItem('sp_cart')) || [];
-
-function updateCartUI() {
-    document.getElementById('cart-count').innerText = cart.length;
-    const container = document.getElementById('cart-items');
-    const totalEl = document.getElementById('cart-total-price');
-    const orderInput = document.getElementById('order-details-input');
+document.addEventListener('DOMContentLoaded', () => {
     
-    if(!container) return;
-
-    let total = 0;
-    let text = "ЗАМОВЛЕННЯ:\n";
-
-    if (cart.length === 0) {
-        container.innerHTML = '<p>Порожньо</p>';
-        totalEl.innerText = '0';
-        if(orderInput) orderInput.value = '';
-        return;
-    }
-
-    container.innerHTML = cart.map((item, index) => {
-        total += item.price;
-        text += `- ${item.title} (${item.price} грн)\n`;
-        return `<div class="cart-item"><span>${item.title}</span><button class="remove-btn" onclick="remove(${index})">&times;</button></div>`;
-    }).join('');
-
-    totalEl.innerText = total;
-    if(orderInput) orderInput.value = text + `\nРАЗОМ: ${total} грн`;
-}
-
-window.addToCart = (title, price) => {
-    cart.push({title, price});
-    localStorage.setItem('sp_cart', JSON.stringify(cart));
-    updateCartUI();
-    alert('Додано!');
-};
-
-window.remove = (index) => {
-    cart.splice(index, 1);
-    localStorage.setItem('sp_cart', JSON.stringify(cart));
-    updateCartUI();
-};
-
-// Модальне вікно
-document.addEventListener('DOMContentLoaded', () => {
-    updateCartUI();
-    const modal = document.getElementById('cart-modal');
-    const btn = document.getElementById('cart-btn');
-    const close = document.querySelector('.close-cart');
-
-    if(btn) btn.onclick = (e) => { e.preventDefault(); modal.style.display = 'block'; };
-    if(close) close.onclick = () => modal.style.display = 'none';
-    window.onclick = (e) => { if(e.target == modal) modal.style.display = 'none'; };
-});
-// === MOBILE MENU LOGIC ===
-document.addEventListener('DOMContentLoaded', () => {
+    // --- 1. Burger Menu Logic ---
     const hamburger = document.getElementById('hamburger-btn');
     const navMenu = document.getElementById('nav-menu');
 
     if (hamburger && navMenu) {
         hamburger.addEventListener('click', () => {
-            // Перемикаємо клас .active, який ми прописали в CSS
             hamburger.classList.toggle('active');
             navMenu.classList.toggle('active');
         });
 
-        // Закривати меню, якщо клікнули на посилання
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+        // Закриваємо меню при кліку на посилання
+        document.querySelectorAll('.nav-links a').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+    }
+
+    // --- 2. Cart Modal Logic (Тільки для сторінки магазину) ---
+    const cartBtn = document.getElementById('cart-btn');
+    const modal = document.getElementById('cart-modal');
+    const closeBtn = document.querySelector('.close-cart');
+
+    if (cartBtn && modal) {
+        cartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            modal.style.display = "block";
+            renderCart();
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = "none";
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
         });
     }
+
+    updateCartCount();
 });
+
+// --- 3. Shop & Cart Logic ---
+let cart = JSON.parse(localStorage.getItem('schoolPrintCart')) || [];
+
+async function loadProducts() {
+    const productList = document.getElementById('product-list');
+    if (!productList) return;
+
+    productList.innerHTML = '<p style="text-align:center; width:100%;">Завантаження...</p>';
+
+    try {
+        // Спробуємо завантажити JSON (створений через адмінку)
+        const response = await fetch('/content/products.json');
+        
+        let products = [];
+        if (response.ok) {
+            const data = await response.json();
+            products = data.items || []; // Структура з config.yml
+        } 
+        
+        // Якщо JSON порожній або помилка, показуємо демо-товари (щоб не було пусто)
+        if (products.length === 0) {
+            products = [
+                { title: "Брендована чашка", price: 150, image: "https://via.placeholder.com/300", description: "Керамічна чашка з вашим лого." },
+                { title: "Еко-сумка", price: 200, image: "https://via.placeholder.com/300", description: "Зручна сумка для покупок." },
+                { title: "Набір стікерів", price: 50, image: "https://via.placeholder.com/300", description: "Яскраві стікери School Print." }
+            ];
+        }
+
+        productList.innerHTML = '';
+        products.forEach((product, index) => {
+            const div = document.createElement('div');
+            div.classList.add('product-item');
+            div.innerHTML = `
+                <img src="${product.image}" alt="${product.title}">
+                <h3>${product.title}</h3>
+                <p>${product.description}</p>
+                <div class="product-price">${product.price} грн</div>
+                <button class="btn full-width" onclick="addToCart('${product.title}', ${product.price})">Додати в кошик</button>
+            `;
+            productList.appendChild(div);
+        });
+
+    } catch (error) {
+        console.error('Error loading products:', error);
+        productList.innerHTML = '<p>Не вдалося завантажити товари.</p>';
+    }
+}
+
+function addToCart(title, price) {
+    cart.push({ title, price });
+    localStorage.setItem('schoolPrintCart', JSON.stringify(cart));
+    updateCartCount();
+    alert(`"${title}" додано в кошик!`);
+}
+
+function updateCartCount() {
+    const countSpan = document.getElementById('cart-count');
+    if (countSpan) countSpan.innerText = cart.length;
+}
+
+function renderCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalPriceSpan = document.getElementById('cart-total-price');
+    const orderDetailsInput = document.getElementById('order-details-input');
+
+    if (!cartItemsContainer) return;
+
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+    let orderText = '';
+
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = '<p>Кошик порожній.</p>';
+    } else {
+        cart.forEach((item, index) => {
+            total += item.price;
+            orderText += `${item.title} - ${item.price} грн\n`;
+            
+            const div = document.createElement('div');
+            div.style.display = "flex";
+            div.style.justifyContent = "space-between";
+            div.style.marginBottom = "10px";
+            div.style.borderBottom = "1px solid #eee";
+            div.style.paddingBottom = "5px";
+            
+            div.innerHTML = `
+                <span>${item.title}</span>
+                <span>
+                    <b>${item.price} грн</b> 
+                    <button onclick="removeFromCart(${index})" style="background:red; padding:2px 8px; font-size:12px; margin-left:10px;">X</button>
+                </span>
+            `;
+            cartItemsContainer.appendChild(div);
+        });
+    }
+
+    totalPriceSpan.innerText = total;
+    if(orderDetailsInput) orderDetailsInput.value = orderText + `\nЗагалом: ${total} грн`;
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    localStorage.setItem('schoolPrintCart', JSON.stringify(cart));
+    renderCart();
+    updateCartCount();
+}
