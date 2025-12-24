@@ -2,9 +2,9 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Магазин - School Print</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -21,10 +21,10 @@
                 <ul class="nav-links" id="nav-menu">
                     <li><a href="index.html">Головна</a></li>
                     <li><a href="about.html">Про нас</a></li>
-                    <li><a href="shop.html">Магазин</a></li>
+                    <li><a href="shop.html" class="active">Магазин</a></li>
                     <li><a href="team.html">Команда</a></li>
                     <li><a href="contacts.html">Контакти</a></li>
-                    <li><a href="#" id="cart-btn" class="cart-link">🛒 Кошик (<span id="cart-count">0</span>)</a></li>
+                    <li><a href="#" id="cart-btn" class="cart-link">🛒 (<span id="cart-count">0</span>)</a></li>
                 </ul>
             </nav>
         </div>
@@ -42,21 +42,25 @@
             <span class="close-cart">&times;</span>
             <h2>Ваш кошик</h2>
             <div id="cart-items"></div>
-            <div class="cart-summary">
+            <div style="margin: 20px 0; font-size: 1.2rem;">
                 <strong>Разом: <span id="cart-total-price">0</span> грн</strong>
             </div>
             
-           <form name="order" method="POST" data-netlify="true" action="/success.html" id="checkout-form" class="checkout-form">
-                <hr>
+           <form name="order" method="POST" data-netlify="true" action="/success.html">
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid #eee;">
                 <h3>Оформити замовлення</h3>
                 <input type="hidden" name="form-name" value="order">
                 <textarea name="order_details" id="order-details-input" style="display:none;"></textarea>
                 
-                <label>Ваше ім'я</label>
-                <input type="text" name="name" required placeholder="Ім'я та Прізвище">
+                <div style="margin-bottom: 15px;">
+                    <label style="display:block; margin-bottom:5px;">Ваше ім'я</label>
+                    <input type="text" name="name" required placeholder="Ім'я та Прізвище" style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px;">
+                </div>
                 
-                <label>Телефон</label>
-                <input type="tel" name="phone" required placeholder="+380...">
+                <div style="margin-bottom: 20px;">
+                    <label style="display:block; margin-bottom:5px;">Телефон</label>
+                    <input type="tel" name="phone" required placeholder="+380..." style="width:100%; padding:10px; border:1px solid #ddd; border-radius:8px;">
+                </div>
                 
                 <button type="submit" class="btn full-width">Надіслати замовлення</button>
             </form>
