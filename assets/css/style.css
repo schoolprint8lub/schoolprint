@@ -1,14 +1,17 @@
+/* --- Змінні та налаштування --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
     --primary: #4F46E5;       /* Сучасний індиго */
     --primary-dark: #4338ca;
-    --accent: #F59E0B;        /* Акцентний помаранчевий */
-    --text-main: #1F2937;     /* Темно-сірий текст */
-    --text-light: #6B7280;
-    --bg-body: #F9FAFB;       /* Світлий фон */
+    --accent: #F59E0B;        /* Акцент */
+    --text-main: #1F2937;     /* Темний текст */
+    --text-light: #6B7280;    /* Сірий текст */
+    --bg-body: #F3F4F6;       /* Світлий фон */
     --bg-card: #FFFFFF;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --radius: 12px;
-    --container: 1200px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --container-width: 1200px;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,7 +26,7 @@ body {
     min-height: 100vh;
 }
 
-/* --- Header & Nav --- */
+/* --- Хедер та Навігація --- */
 header {
     background: var(--bg-card);
     box-shadow: var(--shadow);
@@ -33,7 +36,7 @@ header {
 }
 
 .container {
-    max-width: var(--container);
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -47,15 +50,17 @@ nav {
 
 .logo {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--primary);
     text-decoration: none;
+    letter-spacing: -0.5px;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 30px;
+    gap: 25px;
+    align-items: center;
 }
 
 .nav-links a {
@@ -63,55 +68,40 @@ nav {
     color: var(--text-main);
     font-weight: 500;
     transition: color 0.3s;
+    font-size: 0.95rem;
 }
 
-.nav-links a:hover, .nav-links a.active {
-    color: var(--primary);
-}
+.nav-links a:hover { color: var(--primary); }
+.cart-link { color: var(--primary) !important; font-weight: 700; }
 
-.cart-link {
-    color: var(--primary) !important;
-    font-weight: 700;
-}
-
-/* --- Burger Menu --- */
-.hamburger {
-    display: none;
-    cursor: pointer;
-}
-
+/* --- Бургер меню --- */
+.hamburger { display: none; cursor: pointer; }
 .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    transition: all 0.3s ease-in-out;
-    background-color: var(--text-main);
+    display: block; width: 25px; height: 3px; margin: 5px auto;
+    transition: all 0.3s ease-in-out; background-color: var(--text-main);
 }
 
-/* --- Main Content --- */
+/* --- Основний контент --- */
 main { flex: 1; padding: 40px 0; }
-
-h1, h2, h3 { color: var(--text-main); margin-bottom: 1rem; }
-h1 { text-align: center; margin-bottom: 2rem; }
-
+h1, h2, h3 { color: var(--text-main); margin-bottom: 1rem; line-height: 1.2; }
+h1 { text-align: center; margin-bottom: 2rem; font-size: 2.5rem; }
 p { margin-bottom: 1rem; color: var(--text-light); }
 
-/* --- Grid System (Fix for Shop & Mobile) --- */
+/* --- Сітка (Grid) --- */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
-/* --- Cards --- */
+/* --- Картки --- */
 .card, .product-item {
     background: var(--bg-card);
     border-radius: var(--radius);
     padding: 25px;
     box-shadow: var(--shadow);
-    transition: transform 0.2s;
-    border: 1px solid #E5E7EB;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid rgba(0,0,0,0.05);
     display: flex;
     flex-direction: column;
 }
@@ -122,77 +112,43 @@ p { margin-bottom: 1rem; color: var(--text-light); }
 }
 
 .product-item img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    width: 100%; height: 220px; object-fit: cover;
+    border-radius: 8px; margin-bottom: 15px;
 }
 
 .product-price {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin: 10px 0;
+    font-size: 1.4rem; font-weight: 700; color: var(--primary); margin: 10px 0;
 }
 
-/* --- Buttons --- */
+/* --- Кнопки --- */
 .btn {
-    display: inline-block;
-    background-color: var(--primary);
-    color: white;
-    padding: 12px 24px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    transition: background 0.3s;
+    display: inline-block; background-color: var(--primary); color: white;
+    padding: 12px 28px; border-radius: 8px; text-decoration: none;
+    font-weight: 600; border: none; cursor: pointer; transition: background 0.3s;
     text-align: center;
 }
-
 .btn:hover { background-color: var(--primary-dark); }
-.btn.full-width { width: 100%; }
+.btn.full-width { width: 100%; margin-top: auto; }
 
 /* --- Footer --- */
-footer {
-    background: #111827;
-    color: #9CA3AF;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: auto;
-}
+footer { background: #111827; color: #9CA3AF; text-align: center; padding: 30px 0; margin-top: auto; }
 
-/* --- Modal (Cart) --- */
+/* --- Модальне вікно (Кошик) --- */
 .modal {
-    display: none; 
-    position: fixed; 
-    z-index: 2000; 
-    left: 0; top: 0;
-    width: 100%; height: 100%; 
-    background-color: rgba(0,0,0,0.5);
-    backdrop-filter: blur(5px);
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0;
+    width: 100%; height: 100%; background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
 }
-
 .modal-content {
-    background-color: var(--bg-card);
-    margin: 10% auto; 
-    padding: 30px; 
-    border-radius: var(--radius);
-    width: 90%; 
-    max-width: 500px;
-    position: relative;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-card); margin: 5% auto; padding: 30px;
+    border-radius: var(--radius); width: 90%; max-width: 500px;
+    position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
-
 .close-cart {
-    position: absolute;
-    top: 15px; right: 20px;
-    font-size: 28px;
-    cursor: pointer;
+    position: absolute; top: 15px; right: 20px; font-size: 28px; cursor: pointer;
 }
 
-/* --- Mobile Fixes --- */
+/* --- Мобільна адаптація --- */
 @media (max-width: 768px) {
     .hamburger { display: block; }
     .hamburger.active .bar:nth-child(2) { opacity: 0; }
@@ -200,21 +156,17 @@ footer {
     .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
     .nav-links {
-        position: fixed;
-        left: -100%;
-        top: 70px;
-        flex-direction: column;
-        background-color: var(--bg-card);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
-        padding: 20px 0;
+        position: fixed; left: -100%; top: 70px;
+        flex-direction: column; background-color: var(--bg-card);
+        width: 100%; height: calc(100vh - 70px);
+        text-align: center; transition: 0.3s;
+        padding: 40px 0; box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        gap: 30px;
     }
-
     .nav-links.active { left: 0; }
+    .nav-links a { font-size: 1.2rem; }
     
-    /* Магазин на мобільному буде в 1 колонку завдяки grid settings вище, 
-       але тут можна додатково підстрахувати */
+    h1 { font-size: 1.8rem; }
+    /* Робимо картки в одну колонку на мобільному */
     .grid { grid-template-columns: 1fr; } 
 }
