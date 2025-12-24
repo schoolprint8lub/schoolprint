@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- 1. Burger Menu Logic ---
+    // --- 1. Бургер Меню ---
     const hamburger = document.getElementById('hamburger-btn');
     const navMenu = document.getElementById('nav-menu');
 
@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
             navMenu.classList.toggle('active');
         });
 
-        // Закриваємо меню при кліку на посилання
+        // Закрити меню при кліку на посилання
         document.querySelectorAll('.nav-links a').forEach(n => n.addEventListener('click', () => {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }));
     }
 
-    // --- 2. Cart Modal Logic (Тільки для сторінки магазину) ---
+    // --- 2. Логіка Кошика (тільки якщо є кнопка кошика) ---
     const cartBtn = document.getElementById('cart-btn');
     const modal = document.getElementById('cart-modal');
     const closeBtn = document.querySelector('.close-cart');
@@ -43,9 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartCount();
 });
 
-// --- 3. Shop & Cart Logic ---
+// --- 3. Змінні Кошика ---
 let cart = JSON.parse(localStorage.getItem('schoolPrintCart')) || [];
 
+// --- 4. Завантаження Товарів ---
 async function loadProducts() {
     const productList = document.getElementById('product-list');
     if (!productList) return;
@@ -53,26 +54,24 @@ async function loadProducts() {
     productList.innerHTML = '<p style="text-align:center; width:100%;">Завантаження...</p>';
 
     try {
-        // Спробуємо завантажити JSON (створений через адмінку)
         const response = await fetch('/content/products.json');
-        
         let products = [];
         if (response.ok) {
             const data = await response.json();
-            products = data.items || []; // Структура з config.yml
+            products = data.items || [];
         } 
         
-        // Якщо JSON порожній або помилка, показуємо демо-товари (щоб не було пусто)
+        // Тестові товари, якщо JSON пустий (щоб сайт не був пустим)
         if (products.length === 0) {
             products = [
-                { title: "Брендована чашка", price: 150, image: "https://via.placeholder.com/300", description: "Керамічна чашка з вашим лого." },
-                { title: "Еко-сумка", price: 200, image: "https://via.placeholder.com/300", description: "Зручна сумка для покупок." },
-                { title: "Набір стікерів", price: 50, image: "https://via.placeholder.com/300", description: "Яскраві стікери School Print." }
+                { title: "Брендована чашка", price: 150, image: "https://via.placeholder.com/300/4F46E5/FFFFFF?text=Mug", description: "Керамічна чашка з вашим лого." },
+                { title: "Еко-сумка", price: 200, image: "https://via.placeholder.com/300/10B981/FFFFFF?text=Bag", description: "Зручна сумка для покупок." },
+                { title: "Набір стікерів", price: 50, image: "https://via.placeholder.com/300/F59E0B/FFFFFF?text=Stickers", description: "Яскраві стікери School Print." }
             ];
         }
 
         productList.innerHTML = '';
-        products.forEach((product, index) => {
+        products.forEach((product) => {
             const div = document.createElement('div');
             div.classList.add('product-item');
             div.innerHTML = `
@@ -86,16 +85,17 @@ async function loadProducts() {
         });
 
     } catch (error) {
-        console.error('Error loading products:', error);
-        productList.innerHTML = '<p>Не вдалося завантажити товари.</p>';
+        console.error('Error:', error);
+        productList.innerHTML = '<p>Помилка завантаження товарів.</p>';
     }
 }
 
+// --- 5. Функції Кошика ---
 function addToCart(title, price) {
     cart.push({ title, price });
     localStorage.setItem('schoolPrintCart', JSON.stringify(cart));
     updateCartCount();
-    alert(`"${title}" додано в кошик!`);
+    alert(`"${title}" додано!`);
 }
 
 function updateCartCount() {
@@ -104,43 +104,38 @@ function updateCartCount() {
 }
 
 function renderCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalPriceSpan = document.getElementById('cart-total-price');
-    const orderDetailsInput = document.getElementById('order-details-input');
+    const container = document.getElementById('cart-items');
+    const totalSpan = document.getElementById('cart-total-price');
+    const input = document.getElementById('order-details-input');
 
-    if (!cartItemsContainer) return;
+    if (!container) return;
 
-    cartItemsContainer.innerHTML = '';
+    container.innerHTML = '';
     let total = 0;
-    let orderText = '';
+    let text = '';
 
     if (cart.length === 0) {
-        cartItemsContainer.innerHTML = '<p>Кошик порожній.</p>';
+        container.innerHTML = '<p>Кошик порожній.</p>';
     } else {
         cart.forEach((item, index) => {
             total += item.price;
-            orderText += `${item.title} - ${item.price} грн\n`;
+            text += `${item.title} (${item.price} грн)\n`;
             
             const div = document.createElement('div');
-            div.style.display = "flex";
-            div.style.justifyContent = "space-between";
-            div.style.marginBottom = "10px";
-            div.style.borderBottom = "1px solid #eee";
-            div.style.paddingBottom = "5px";
-            
+            div.style.cssText = "display:flex; justify-content:space-between; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:5px;";
             div.innerHTML = `
                 <span>${item.title}</span>
                 <span>
-                    <b>${item.price} грн</b> 
-                    <button onclick="removeFromCart(${index})" style="background:red; padding:2px 8px; font-size:12px; margin-left:10px;">X</button>
+                    <b>${item.price}</b> 
+                    <button onclick="removeFromCart(${index})" style="background:#EF4444; color:white; border:none; border-radius:4px; padding:2px 6px; margin-left:10px; cursor:pointer;">X</button>
                 </span>
             `;
-            cartItemsContainer.appendChild(div);
+            container.appendChild(div);
         });
     }
 
-    totalPriceSpan.innerText = total;
-    if(orderDetailsInput) orderDetailsInput.value = orderText + `\nЗагалом: ${total} грн`;
+    totalSpan.innerText = total;
+    if(input) input.value = text + `\nРАЗОМ: ${total} грн`;
 }
 
 function removeFromCart(index) {
