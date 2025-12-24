@@ -6,21 +6,17 @@
     <title>Дякуємо!</title>
     <link rel="stylesheet" href="assets/css/style.css">
     <style>
-        body { 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            height: 80vh; 
-            text-align: center; 
+        .success-wrapper { 
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            height: 70vh; text-align: center; padding: 20px;
         }
-        h1 { color: #0B1C2D; margin-bottom: 20px; }
-        p { font-size: 1.2rem; margin-bottom: 30px; }
     </style>
 </head>
 <body>
-    <h1>Дякуємо!</h1>
-    <p>Ми отримали вашу заявку і скоро зв'яжемося з вами.</p>
-    <a href="index.html" class="btn">Повернутися на головну</a>
+    <div class="success-wrapper">
+        <h1 style="color: var(--secondary-color);">Дякуємо!</h1>
+        <p>Ми отримали вашу заявку і скоро зв'яжемося з вами.</p>
+        <a href="index.html" class="btn">Повернутися на головну</a>
+    </div>
 </body>
 </html>
