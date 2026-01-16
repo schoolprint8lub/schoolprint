@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Сторінку не знайдено | School Print</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/site.webmanifest">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        body { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            text-align: center;
+        }
+        .error-container {
+            max-width: 600px;
+            padding: 40px;
+        }
+        .error-code { 
+            font-size: 8rem; 
+            font-weight: 800; 
+            line-height: 1; 
+            color: var(--primary); 
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .error-emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-emoji">😕</div>
+        <div class="error-code">404</div>
+        <h1 style="margin-bottom: 20px;">Сторінку не знайдено</h1>
+        <p style="font-size: 1.1rem; margin-bottom: 30px;">Схоже, такої сторінки не існує або вона була переміщена за новою адресою.</p>
+        
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px;">
+            <a href="index.html" class="btn">На головну</a>
+            <a href="shop.html" class="btn" style="background: transparent; color: var(--primary); border: 2px solid var(--primary);">В магазин</a>
+        </div>
+        
+        <div style="background: var(--bg-card); padding: 20px; border-radius: 12px; border: var(--border-light);">
+            <h3 style="margin-bottom: 15px;">Шукайте щось?</h3>
+            <p style="margin-bottom: 15px;">Можливо, вас зацікавить:</p>
+            <ul style="text-align: left; line-height: 1.8;">
+                <li>🛍️ <a href="shop.html" style="color: var(--primary);">Наш магазин поліграфії</a></li>
+                <li>📋 <a href="about.html" style="color: var(--primary);">Інформація про нас</a></li>
+                <li>👥 <a href="team.html" style="color: var(--primary);">Наша команда</a></li>
+                <li>📞 <a href="contacts.html" style="color: var(--primary);">Контакти для зв'язку</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

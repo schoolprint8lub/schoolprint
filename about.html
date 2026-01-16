@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про нас - School Print</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/site.webmanifest">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">School Print</a>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="about.html" class="active">Про нас</a></li>
+                    <li><a href="shop.html">Магазин</a></li>
+                    <li><a href="team.html">Команда</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Змінити тему">
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+                    <div class="hamburger" id="hamburger-btn">
+                        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Наша Історія</h1>
+        <div class="card" style="margin-bottom: 50px;">
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                СШП «School Print» — це не просто бізнес, це команда однодумців з Української класичної гімназії.
+            </p>
+            <h3>Ключові дати</h3>
+            <ul style="list-style: none; padding: 0; line-height: 1.8;">
+                <li style="margin-bottom: 15px;">📅 <strong>22 листопада 2022:</strong> Старт роботи СШП.</li>
+                <li style="margin-bottom: 15px;">📅 <strong>2023-2024:</strong> Введення курсу «Соціальне шкільне підприємництво».</li>
+                <li style="margin-bottom: 15px;">🏆 <strong>StudBizAward-2025:</strong> Ми увійшли в п'ятірку найкращих команд України!</li>
+            </ul>
+        </div>
+
+        <h2 style="text-align: center;">Соціальна цінність</h2>
+        <div class="card" style="margin-bottom: 50px;">
+            <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                Ми реалізуємо важливу місію, спрямовуючи діяльність на допомогу та розвиток:
+            </p>
+            <ul style="list-style: none; padding: 0; line-height: 1.8;">
+                <li style="margin-bottom: 10px;">🇺🇦 <strong>Підтримка ЗСУ:</strong> Частину прибутку ми передаємо на допомогу фронту (окопні свічки, обереги, медикаменти, продукти).</li>
+                <li style="margin-bottom: 10px;">📚 <strong>Освіта:</strong> Виготовляємо брендовані щоденники та методичну продукцію для гімназії.</li>
+                <li style="margin-bottom: 10px;">🎓 <strong>Розвиток молоді:</strong> Учні проходять повний шлях ведення бізнесу від ідеї до реалізації.</li>
+                <li style="margin-bottom: 10px;">💡 <strong>Популяризація:</strong> Проводимо воркшопи та ділимося досвідом соціального підприємництва.</li>
+            </ul>
+        </div>
+
+        <h2 style="text-align: center;">Часті запитання (FAQ)</h2>
+        <div class="grid faq-grid" style="margin-bottom: 50px;">
+            <div class="card">
+                <h3>🚚 Як відбувається доставка?</h3>
+                <p style="margin-bottom: 0;">Ми відправляємо замовлення Новою Поштою або Укрпоштою. Також можливий самовивіз з гімназії.</p>
+            </div>
+            <div class="card">
+                <h3>🎨 Чи можна зі своїм дизайном?</h3>
+                <p style="margin-bottom: 0;">Так! Ми можемо надрукувати ваше зображення на чашці, футболці або значках. Надішліть файл нам у Telegram.</p>
+            </div>
+            <div class="card">
+                <h3>⏳ Скільки часу робиться замовлення?</h3>
+                <p style="margin-bottom: 0;">Зазвичай виготовлення займає 1-3 дні, залежно від завантаженості та складності замовлення.</p>
+            </div>
+        </div>
+
+        <h2 style="text-align: center;">Наші Партнери</h2>
+        <div class="grid">
+            <div class="card" style="text-align:center;"><h3>Українська класична гімназія</h3></div>
+            <div class="card" style="text-align:center;"><h3>ГО «School of ME»</h3></div>
+            <div class="card" style="text-align:center;"><h3>БО «Благодар життя»</h3></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>School Print</h4>
+                    <p style="font-size: 0.9rem;">Соціальне шкільне підприємство.<br>Навчаємось, працюємо, допомагаємо.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навігація</h4>
+                    <ul>
+                        <li><a href="shop.html">Магазин</a></li>
+                        <li><a href="about.html">Про нас</a></li>
+                        <li><a href="team.html">Команда</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакти</h4>
+                    <ul>
+                        <li>📍 м. Лубни, просп. Володимирський, 104/1</li>
+                        <li>📧 ssplubny8@gmail.com</li>
+                        <li>⏰ Пн-Пт: 09:00 - 17:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 СШП «School Print». Всі права захищено.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

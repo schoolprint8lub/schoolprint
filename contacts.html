@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакти - School Print</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/site.webmanifest">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">School Print</a>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="shop.html">Магазин</a></li>
+                    <li><a href="team.html">Команда</a></li>
+                    <li><a href="contacts.html" class="active">Контакти</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Змінити тему">
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+                    <div class="hamburger" id="hamburger-btn">
+                        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="contact-wrapper">
+            <div class="contact-info-side">
+                <h2>Контактна інформація</h2>
+                <div class="contact-item">
+                    <div class="icon-box">📍</div>
+                    <div>
+                        <h4>Адреса</h4>
+                        <p>м. Лубни, просп. Володимирський, 104/1<br>Українська класична гімназія</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon-box">📧</div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>ssplubny8@gmail.com</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon-box">⏰</div>
+                    <div>
+                        <h4>Графік роботи</h4>
+                        <p>Понеділок - П'ятниця<br>09:00 - 17:00</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="icon-box">📱</div>
+                    <div>
+                        <h4>Телефон</h4>
+                        <p>+380 (XX) XXX-XX-XX</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-side">
+                <h2>Напишіть нам</h2>
+                <form name="contact" method="POST" data-netlify="true" action="/success.html">
+                    <input type="hidden" name="form-name" value="contact">
+                    
+                    <div class="form-group">
+                        <label>Ваше ім'я</label>
+                        <input type="text" name="name" required placeholder="Ім'я та Прізвище">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="email" required placeholder="your@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Телефон</label>
+                        <input type="tel" name="phone" placeholder="+380...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Повідомлення</label>
+                        <textarea name="message" rows="5" required placeholder="Опишіть ваше замовлення або запитання..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn full-width">Надіслати повідомлення</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>School Print</h4>
+                    <p style="font-size: 0.9rem;">Соціальне шкільне підприємство.<br>Навчаємось, працюємо, допомагаємо.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навігація</h4>
+                    <ul>
+                        <li><a href="shop.html">Магазин</a></li>
+                        <li><a href="about.html">Про нас</a></li>
+                        <li><a href="team.html">Команда</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакти</h4>
+                    <ul>
+                        <li>📍 м. Лубни, просп. Володимирський, 104/1</li>
+                        <li>📧 ssplubny8@gmail.com</li>
+                        <li>⏰ Пн-Пт: 09:00 - 17:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 СШП «School Print». Всі права захищено.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

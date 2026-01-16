@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Команда - School Print</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/site.webmanifest">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">School Print</a>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="shop.html">Магазин</a></li>
+                    <li><a href="team.html" class="active">Команда</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Змінити тему">
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+                    <div class="hamburger" id="hamburger-btn">
+                        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Наша Команда</h1>
+        <p style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+            Люди, які створюють магію School Print. Кожен з нас — важлива частина великого механізму.
+        </p>
+
+        <h2 style="text-align: center;">Наставники та Куратори</h2>
+        <div class="grid" style="margin-bottom: 50px;">
+            <div class="card"><h3>Тетяна Грицай</h3><p>Кураторка СШП</p></div>
+            <div class="card"><h3>Тетяна Литвих</h3><p>Наставниця</p></div>
+            <div class="card"><h3>Наталія Симоненко</h3><p>Наставниця</p></div>
+        </div>
+
+        <h2 style="text-align: center;">Управління та Адміністрація</h2>
+        <div class="grid" style="margin-bottom: 50px;">
+            <div class="card"><h3>Володимир</h3><p>Директор СШП</p></div>
+            <div class="card"><h3>Поліна</h3><p>HR-менеджмент</p></div>
+            <div class="card"><h3>Софія</h3><p>Фінансовий контроль</p></div>
+        </div>
+
+        <h2 style="text-align: center;">Маркетинг, Комунікації та Продажі</h2>
+        <div class="grid" style="margin-bottom: 50px;">
+            <div class="card"><h3>Ярослав</h3><p>Маркетинг та дослідження</p></div>
+            <div class="card"><h3>Матвій</h3><p>Маркетинг та дослідження</p></div>
+            <div class="card"><h3>Артем</h3><p>Комунікації та PR</p></div>
+            <div class="card"><h3>Крістіна</h3><p>Комунікації та PR</p></div>
+            <div class="card"><h3>Анастасія</h3><p>Відділ продажів</p></div>
+            <div class="card"><h3>Ярослав</h3><p>Відділ продажів</p></div>
+        </div>
+
+        <h2 style="text-align: center;">Виробничий департамент</h2>
+        <div class="grid">
+            <div class="card"><h3>Руслан</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Марія</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Дарина</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Дарина</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Злата</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Марія</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Анастасія</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Дарина</h3><p>Виробництво</p></div>
+            <div class="card"><h3>Дар’я</h3><p>Виробництво</p></div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>School Print</h4>
+                    <p style="font-size: 0.9rem;">Соціальне шкільне підприємство.<br>Навчаємось, працюємо, допомагаємо.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навігація</h4>
+                    <ul>
+                        <li><a href="shop.html">Магазин</a></li>
+                        <li><a href="about.html">Про нас</a></li>
+                        <li><a href="team.html">Команда</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакти</h4>
+                    <ul>
+                        <li>📍 м. Лубни, просп. Володимирський, 104/1</li>
+                        <li>📧 ssplubny8@gmail.com</li>
+                        <li>⏰ Пн-Пт: 09:00 - 17:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 СШП «School Print». Всі права захищено.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин - School Print</title>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
+    <link rel="manifest" href="assets/img/site.webmanifest">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <script>
+        (function() {
+            var savedTheme = localStorage.getItem('theme');
+            var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        })();
+    </script>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">School Print</a>
+                <ul class="nav-links" id="nav-menu">
+                    <li><a href="index.html">Головна</a></li>
+                    <li><a href="about.html">Про нас</a></li>
+                    <li><a href="shop.html" class="active">Магазин</a></li>
+                    <li><a href="team.html">Команда</a></li>
+                    <li><a href="contacts.html">Контакти</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <button id="theme-toggle" class="theme-toggle" aria-label="Змінити тему">
+                        <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                        <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    </button>
+                    <a href="#" id="cart-btn" class="cart-head-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                        <span id="cart-count">0</span>
+                    </a>
+                    <div class="hamburger" id="hamburger-btn">
+                        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>Каталог Продукції</h1>
+        <div id="product-list" class="grid">
+            <p>Завантаження...</p>
+        </div>
+    </main>
+
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-cart">&times;</span>
+            <h2>Ваш кошик</h2>
+            <div id="cart-items"></div>
+            <div style="margin: 20px 0; font-size: 1.2rem; font-weight: 700;">
+                Разом: <span id="cart-total-price">0</span> грн
+            </div>
+           <form name="order" method="POST" data-netlify="true" action="/success.html">
+                <hr style="margin: 20px 0; opacity: 0.3;">
+                <h3>Оформити замовлення</h3>
+                <input type="hidden" name="form-name" value="order">
+                <textarea name="order_details" id="order-details-input" style="display:none;"></textarea>
+                <label>Ваше ім'я</label>
+                <input type="text" name="name" required placeholder="Ім'я та Прізвище">
+                <label>Телефон</label>
+                <input type="tel" name="phone" required placeholder="+380...">
+                <button type="submit" class="btn full-width">Замовити</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>School Print</h4>
+                    <p style="font-size: 0.9rem;">Соціальне шкільне підприємство.<br>Навчаємось, працюємо, допомагаємо.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Навігація</h4>
+                    <ul>
+                        <li><a href="shop.html">Магазин</a></li>
+                        <li><a href="about.html">Про нас</a></li>
+                        <li><a href="team.html">Команда</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Контакти</h4>
+                    <ul>
+                        <li>📍 м. Лубни, просп. Володимирський, 104/1</li>
+                        <li>📧 ssplubny8@gmail.com</li>
+                        <li>⏰ Пн-Пт: 09:00 - 17:00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 СШП «School Print». Всі права захищено.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="assets/js/main.js"></script>
+    <script>document.addEventListener('DOMContentLoaded', ()=>{ loadProducts(); updateCartCount(); });</script>
+</body>
+</html>
